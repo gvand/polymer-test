@@ -7,8 +7,7 @@ RUN         apt-get update \
             && useradd --user-group --create-home --shell /bin/false app \
             && npm i -g polymer-cli \
             && npm i -g yarn \
-            && npm i -g bower \
-            && mkdir -p /var/log/pm2
+            && npm i -g bower
 
 ENV         HOME=/home/app
 
