@@ -1,6 +1,11 @@
-# bash in container $> docker exec -it 5831c1269132 bash
-# create new project $> docker run --name polymer-project --rm -p 8081:8081 -v $(pwd):/home/polymer/app gvand/polymer polymer init polymer-2-starter-kit
-# serve project $> docker run --name polymer-project --rm -p 8081:8081 -v $(pwd):/home/polymer/app gvand/polymer polymer serve -H 0.0.0.0
+# bash in container $>
+# docker exec -it 5831c1269132 bash
+
+# create new project
+# $> docker run --name polymer-project --rm -p 8081:8081 -v $(pwd):/home/app/test gvand/polymer polymer init polymer-2-starter-kit
+
+# serve project
+# $> docker run --name polymer-project --rm -p 8081:8081 -v $(pwd):/home/app/test gvand/polymer polymer serve -H 0.0.0.0
 
 version: "2"
 
@@ -17,9 +22,9 @@ services:
         - "3000:3000"
         - "3001:3001"
       volumes:
-        - .:/home/polymer/app
-        - /home/polymer/app/node_modules
-      working_dir: /home/polymer/app
+        - .:/home/app/test
+        - /home/app/test/node_modules
+      working_dir: /home/app/test
       command: ["npm", "start"]
       networks:
         - app-network

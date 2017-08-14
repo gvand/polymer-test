@@ -9,10 +9,13 @@
   "scripts": {
     "start": "npm run serve | npm run watch",
     "serve": "polymer serve -H 0.0.0.0",
-    "watch": "browser-sync start --proxy 0.0.0.0:8081 --files './*.html', 'src/*.html'",
+    "watch": "browser-sync start --proxy 0.0.0.0:8081 --no-open --files './*.html', 'src/*.html'",
     "lint": "npm run lint:javascript && polymer lint",
     "lint:javascript": "eslint . --ext js,html --ignore-path .gitignore",
     "test": "polymer test",
     "test:integration": "polymer build # test that psk builds without error with the CLI"
+  },
+  "dependencies": {
+    "redux": "^3.7.2"
   }
 }
