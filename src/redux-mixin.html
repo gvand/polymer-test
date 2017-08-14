@@ -1,20 +1,24 @@
 <link rel="import" href="../bower_components/polymer-redux/dist/polymer-redux.html">
 <script src="../node_modules/redux/dist/redux.js"></script>
-<script>
-    const initial = {
-        message: 'Hello from PolymerRedux'
-    };
-    const reducer = (state = initial, action) => {
-        switch (action.type) {
-            case 'UPDATE_MESSAGE':
-                return Object.assign({}, state, {
-                    message: action.message
-                });
 
+<script>
+
+    const reducer = (state = {count: 0}, action) => {
+        switch (action.type) {
+            case 'PLUS':
+                return Object.assign({}, state, {
+                    count: parseInt(state.count + 1)
+                });
+            case 'MINUS':
+                return Object.assign({}, state, {
+                    count: parseInt(state.count - 1)
+                });
             default:
-                return state;
+                return  state;
         }
     };
+
     const store = Redux.createStore(reducer);
     ReduxMixin = PolymerRedux(store);
+
 </script>

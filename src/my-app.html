@@ -1,18 +1,29 @@
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
-<link rel="import" href="./message-mixin.html">
+<link rel="import" href="count-mixin.html">
 
 <dom-module id="my-app">
+
   <template>
-    <p>[[message]]</p>
-    <button on-click="handleUpdateMessage">Update message</button>
+    <p>[[count]]</p>
+    <button on-click="handlePlus">+</button>
+    <button on-click="handleMinus">-</button>
   </template>
+
   <script>
-      class MyApp extends MessageMixin(Polymer.Element) {
+      class MyApp extends CountMixin(Polymer.Element) {
+
           static get is() { return 'my-app'; }
-          handleUpdateMessage() {
-              this.dispatch('updateMessage', 'Nothing changes by staying the same, quite literally.');
+
+          handlePlus() {
+              this.dispatch('plus');
+          }
+
+          handleMinus() {
+              this.dispatch('minus');
           }
       }
+
       window.customElements.define(MyApp.is, MyApp);
   </script>
+
 </dom-module>

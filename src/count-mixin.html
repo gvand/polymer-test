@@ -1,0 +1,27 @@
+<link rel="import" href="./redux-mixin.html">
+<script>
+    CountMixin = Parent => class CountMixin extends ReduxMixin(Parent) {
+        static get properties() {
+            return {
+                count: {
+                    type: Number,
+                    statePath: 'count'
+                }
+            };
+        }
+        static get actions() {
+            return {
+                plus() {
+                    return {
+                        type: 'PLUS'
+                    }
+                },
+                minus() {
+                    return {
+                        type: 'MINUS'
+                    }
+                }
+            };
+        }
+    };
+</script>
