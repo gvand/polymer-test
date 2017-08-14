@@ -1,0 +1,29 @@
+# bash in container $> docker exec -it 5831c1269132 bash
+# create new project $> docker run --name polymer-project --rm -p 8081:8081 -v $(pwd):/home/polymer/app gvand/polymer polymer init polymer-2-starter-kit
+# serve project $> docker run --name polymer-project --rm -p 8081:8081 -v $(pwd):/home/polymer/app gvand/polymer polymer serve -H 0.0.0.0
+
+version: "2"
+
+services:
+
+    node:
+      container_name: polymer-test
+      image: gvand/polymer
+      build:
+        context: .
+        dockerfile: ./Dockerfile
+      ports:
+        - "8081:8081"
+        - "3000:3000"
+        - "3001:3001"
+      volumes:
+        - .:/home/polymer/app
+        - /home/polymer/app/node_modules
+      working_dir: /home/polymer/app
+      command: ["npm", "start"]
+      networks:
+        - app-network
+
+networks:
+    app-network:
+      driver: bridge

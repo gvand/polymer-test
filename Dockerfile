@@ -1,23 +1,28 @@
 FROM        node:7.2.0
 
-MAINTAINER  Gerbrand van Dantzig
+MAINTAINER  Gerbrand van Dantzig <gerbrand.van.dantzig@gmail.com>
 
-RUN         apt-get update \
-            && apt-get -y install libpng12-0 \
-            && useradd --user-group --create-home --shell /bin/false app \
-            && npm i -g polymer-cli \
-            && npm i -g yarn \
-            && npm i -g bower
+ENV         HOME /home/polymer
+ARG         user=polymer
+ARG         group=polymer
 
-ENV         HOME=/home/app
+RUN         useradd -d "$HOME" -U -m -s /bin/bash ${user}
 
-COPY        package.json yarn.lock $HOME/test/
-RUN         chown -R app:app $HOME/*
+RUN         apt-get update && \
+            apt-get install -y --no-install-recommends git && \
+            apt-get clean && \
+            npm i -g gulp bower polymer-cli --unsafe-perm
+RUN         npm i -g generator-polymer-init-custom-build && \
+            npm i -g browser-sync
 
-USER        app
-WORKDIR     $HOME/test
-RUN         yarn install
+USER        ${user}
 
-EXPOSE      8080
+EXPOSE      8081
 
-CMD         ["npm", "start"]
+RUN         mkdir -p /home/${user}/app
+
+VOLUME      /home/${user}/app
+
+WORKDIR     /home/${user}/app
+
+CMD         bash
