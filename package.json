@@ -16,6 +16,8 @@
     "test:integration": "polymer build # test that psk builds without error with the CLI"
   },
   "dependencies": {
-    "redux": "^3.7.2"
+    "redux": "^3.7.2",
+    "redux-saga": "^0.15.6",
+    "superagent": "^3.5.2"
   }
 }
