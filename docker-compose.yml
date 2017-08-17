@@ -1,4 +1,4 @@
-# bash in container $>
+# bash into container $>
 # docker exec -it 5831c1269132 bash
 
 # create new project
@@ -7,27 +7,76 @@
 # serve project
 # $> docker run --name polymer-project --rm -p 8081:8081 -v $(pwd):/home/app/test gvand/polymer polymer serve -H 0.0.0.0
 
-version: "2"
+version: "2.1"
 
 services:
 
-    node:
-      container_name: polymer-test
-      image: gvand/polymer
-      build:
-        context: .
-        dockerfile: ./Dockerfile
-      ports:
-        - "8081:8081"
-        - "3000:3000"
-        - "3001:3001"
-      volumes:
-        - .:/home/app/test
-        - /home/app/test/node_modules
-      working_dir: /home/app/test
-      command: ["npm", "start"]
-      networks:
-        - app-network
+  proxy:
+    container_name: proxy
+    image: traefik
+    restart: always
+    networks:
+      - app-network
+    ports:
+      - "80:80"
+      - "8080:8080"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./traefik.toml:/traefik.toml
+#      - ./acme.json:/acme.json
+
+  polymer:
+    container_name: polymer
+    image: ing/polymer
+    build:
+      context: ./polymer
+      dockerfile: Dockerfile
+    labels:
+      - "traefik.port=8081"
+      - "traefik.backend=polymer"
+      - "traefik.protocol=http"
+      - "traefik.frontend.entryPoints=http"
+      - "traefik.frontend.rule=Host:docker.localhost"
+      - "traefik.docker.network=app-network"
+#      - "traefik.sync.backend=polymer"
+#      - "traefik.sync.port=3000"
+#      - "traefik.sync.frontend.rule=Host:sync.docker.localhost"
+      - "traefik.enable=true"
+    ports:
+      - "8081"
+      - "3000"
+      - "3001"
+    volumes:
+      - ./polymer:/home/app/test
+      - ./polymer/node_modules:/home/app/test/node_modules
+    working_dir: /home/app/test
+    command: ["npm", "start"]
+    networks:
+      - app-network
+
+  node:
+    container_name: node
+    image: ing/node
+    build:
+      context: ./node
+      dockerfile: Dockerfile
+    labels:
+      - "traefik.port=8082"
+      - "traefik.backend=node"
+      - "traefik.protocol=http"
+      - "traefik.frontend.entryPoints=http"
+      - "traefik.frontend.rule=Host:docker.localhost;PathPrefix:/bower_components/"
+      - "traefik.docker.network=app-network"
+      - "traefik.enable=true"
+    ports:
+      - "8082"
+    volumes:
+      - ./node:/home/app/test
+      - ./node/node_modules:/home/app/test/node_modules
+    working_dir: /home/app/test
+    command: ["npm", "start"]
+    networks:
+      - app-network
 
 networks:
     app-network:

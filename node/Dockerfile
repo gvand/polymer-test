@@ -5,7 +5,8 @@ MAINTAINER  Gerbrand van Dantzig <gerbrand.van.dantzig@gmail.com>
 RUN         apt-get update \
             && apt-get install -y --no-install-recommends git \
             && apt-get clean \
-            && useradd --user-group --create-home --shell /bin/false app
+            && useradd --user-group --create-home --shell /bin/false app \
+            && npm i -g bower
 
 ENV         HOME=/home/app
 
@@ -16,6 +17,6 @@ USER        app
 WORKDIR     $HOME/test
 RUN         npm i
 
-EXPOSE      8081
+EXPOSE      8080
 
 CMD         bash

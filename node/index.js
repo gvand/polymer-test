@@ -4,12 +4,11 @@ const bodyParser = require('body-parser');
 const compression = require('compression');
 const path = require('path');
 const routes = require('./routes/router');
-// const db = require('./lib/database');
 const logger = require('./lib/logger');
 const app = express();
 
 app.set('host', process.env.HOST || '0.0.0.0');
-app.set('port', process.env.PORT || 3000);
+app.set('port', process.env.PORT || 8082);
 app.set('etag', false);
 app.set('maxAge', 86400000);
 app.set('views', './app/views');
@@ -38,14 +37,12 @@ if (process.env.NODE_ENV === 'development') {
     app.use(require('morgan')('dev'));
 }
 
-// db.init(logger);
-
 app.get('/diagnostics/heartbeat', (req, res) => {
     res.sendStatus(200);
 });
 
 app.use( (req, res, next) => {
-    res.setHeader('Cache-Control', 'public, max-age=86400'); // one day
+    res.setHeader('Cache-Control', 'public, max-age=86400');
     next();
 });
 
@@ -59,6 +56,20 @@ app.use( (err, req, res, next) => {
         logger.error(err.stack);
     }
     res.sendStatus(status);
+});
+
+app.use(function (req, res, next) {
+    // TODO: return 404
+    res
+    // .status(404)
+        .send(`Route not found: ${req.url}`);
+});
+
+app.use(function (err, req, res, next) {
+    // console.error(err.stack)
+    res
+    // .status(500)
+        .send(`Some error happened: ${err.stack}`);
 });
 
 app.listen(app.get('port'), app.get('host'), error => {
