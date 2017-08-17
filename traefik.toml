@@ -1,14 +1,18 @@
 #    command: --web --docker --docker.domain=docker.localhost --logLevel=DEBUG
 #    command: --web --docker --docker.watch --docker.domain=docker.localhost --logLevel=DEBUG --entryPoints="Name:http Address::80"
 
-debug = false
+debug = true
 checkNewVersion = true
 logLevel = "DEBUG"
-defaultEntryPoints = ["https","http"]
+defaultEntryPoints = ["http","http3000","http3001"]
 
 [entryPoints]
   [entryPoints.http]
   address = ":80"
+  [entryPoints.http3000]
+  address = ":3000"
+  [entryPoints.http3001]
+  address = ":3001"
 
 [retry]
 
@@ -17,9 +21,3 @@ endpoint = "unix:///var/run/docker.sock"
 domain = "docker.localhost"
 watch = true
 exposedbydefault = false
-
-#[acme]
-#email = "your-email-here@my-awesome-app.org"
-#storage = "acme.json"
-#entryPoint = "https"
-#OnHostRule = true

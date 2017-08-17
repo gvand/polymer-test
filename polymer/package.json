@@ -1,5 +1,5 @@
 {
-  "name": "polymer-starter-kit",
+  "name": "polymer",
   "license": "BSD-3-Clause",
   "devDependencies": {
     "eslint": "^3.19.0",
@@ -8,8 +8,8 @@
   },
   "scripts": {
     "start": "npm run serve | npm run watch",
-    "serve": "polymer serve -H 0.0.0.0",
-    "watch": "browser-sync start --proxy 0.0.0.0:8081 --no-open --files './*.html', 'src/*.html'",
+    "serve": "polymer serve -H 0.0.0.0 -p 8081",
+    "watch": "browser-sync start --proxy 'docker.localhost/' --ws --no-open --files './*.html', 'src/*.html'",
     "lint": "npm run lint:javascript && polymer lint",
     "lint:javascript": "eslint . --ext js,html --ignore-path .gitignore",
     "test": "polymer test",

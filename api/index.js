@@ -8,11 +8,9 @@ const logger = require('./lib/logger');
 const app = express();
 
 app.set('host', process.env.HOST || '0.0.0.0');
-app.set('port', process.env.PORT || 8082);
+app.set('port', process.env.PORT || 8083);
 app.set('etag', false);
 app.set('maxAge', 86400000);
-app.set('views', './app/views');
-app.set('view engine', 'ejs');
 
 app.disable('x-powered-by');
 app.use(helmet.frameguard({action: 'deny'}));
@@ -31,7 +29,6 @@ app.use((req, res, next) => {
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
 app.use(compression());
-app.use(express.static(path.resolve(__dirname, 'public'), {index: false, etag: false}));
 
 if (process.env.NODE_ENV === 'development') {
     app.use(require('morgan')('dev'));

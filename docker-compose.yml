@@ -20,10 +20,11 @@ services:
     ports:
       - "80:80"
       - "8080:8080"
+      - "3000:3000"
+      - "3001:3001"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - ./traefik.toml:/traefik.toml
-#      - ./acme.json:/acme.json
 
   polymer:
     container_name: polymer
@@ -33,15 +34,17 @@ services:
       dockerfile: Dockerfile
     labels:
       - "traefik.port=8081"
-      - "traefik.backend=polymer"
       - "traefik.protocol=http"
-      - "traefik.frontend.entryPoints=http"
+      - "traefik.backend=polymer"
       - "traefik.frontend.rule=Host:docker.localhost"
-      - "traefik.docker.network=app-network"
-#      - "traefik.sync.backend=polymer"
-#      - "traefik.sync.port=3000"
-#      - "traefik.sync.frontend.rule=Host:sync.docker.localhost"
+      - "traefik.polymer.port=8081"
+      - "traefik.polymer.frontend.entryPoints=http"
+      - "traefik.sync3000.port=3000"
+      - "traefik.sync3000.frontend.entryPoints=http3000"
+      - "traefik.sync3001.port=3001"
+      - "traefik.sync3001.frontend.entryPoints=http3001"
       - "traefik.enable=true"
+      - "traefik.docker.network=app-network"
     ports:
       - "8081"
       - "3000"
@@ -54,25 +57,47 @@ services:
     networks:
       - app-network
 
-  node:
-    container_name: node
-    image: ing/node
+  bower:
+    container_name: bower
+    image: ing/bower
     build:
-      context: ./node
+      context: ./bower
       dockerfile: Dockerfile
     labels:
       - "traefik.port=8082"
-      - "traefik.backend=node"
+      - "traefik.backend=bower"
       - "traefik.protocol=http"
-      - "traefik.frontend.entryPoints=http"
       - "traefik.frontend.rule=Host:docker.localhost;PathPrefix:/bower_components/"
       - "traefik.docker.network=app-network"
       - "traefik.enable=true"
     ports:
       - "8082"
     volumes:
-      - ./node:/home/app/test
-      - ./node/node_modules:/home/app/test/node_modules
+      - ./bower:/home/app/test
+      - ./bower/node_modules:/home/app/test/node_modules
+    working_dir: /home/app/test
+    command: ["npm", "start"]
+    networks:
+      - app-network
+
+  api:
+    container_name: api
+    image: ing/api
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+    labels:
+      - "traefik.port=8083"
+      - "traefik.backend=api"
+      - "traefik.protocol=http"
+      - "traefik.frontend.rule=Host:api.docker.localhost"
+      - "traefik.docker.network=app-network"
+      - "traefik.enable=true"
+    ports:
+      - "8083"
+    volumes:
+      - ./api:/home/app/test
+      - ./api/node_modules:/home/app/test/node_modules
     working_dir: /home/app/test
     command: ["npm", "start"]
     networks:
