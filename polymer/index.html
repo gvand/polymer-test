@@ -41,88 +41,88 @@
     <script src="bower_components/webcomponentsjs/webcomponents-loader.js"></script>
 
     <link rel="import" href="src/my-app.html">
-    <!--<link rel="import" href="bower_components/iron-demo-helpers/demo-pages-shared-styles.html">-->
-    <!--<link rel="import" href="bower_components/iron-demo-helpers/demo-snippet.html">-->
+    <link rel="import" href="bower_components/iron-demo-helpers/demo-pages-shared-styles.html">
+    <link rel="import" href="bower_components/iron-demo-helpers/demo-snippet.html">
 
-    <!--<link rel="import" href="bower_components/paper-button/paper-button.html">-->
-    <!--<link rel="import" href="bower_components/paper-styles/color.html">-->
-    <!--<link rel="import" href="bower_components/paper-spinner/paper-spinner.html">-->
-    <!--<link rel="import" href="bower_components/paper-spinner/paper-spinner-lite.html">-->
+    <link rel="import" href="bower_components/paper-button/paper-button.html">
+    <link rel="import" href="bower_components/paper-styles/color.html">
+    <link rel="import" href="bower_components/paper-spinner/paper-spinner.html">
+    <link rel="import" href="bower_components/paper-spinner/paper-spinner-lite.html">
 
-    <!--<style is="custom-style">-->
-      <!--paper-button {-->
-        <!--font-family: 'Roboto', 'Noto', sans-serif;-->
-        <!--font-weight: normal;-->
-        <!--font-size: 14px;-->
-        <!-- -webkit-font-smoothing: antialiased;-->
-      <!--}-->
-      <!--paper-button.pink {-->
-        <!--color: var(&#45;&#45;paper-pink-a200);-->
-        <!--&#45;&#45;paper-button-ink-color: var(&#45;&#45;paper-pink-a200);-->
-      <!--}-->
-      <!--paper-button.pink:hover {-->
-        <!--background-color: var(&#45;&#45;paper-pink-100);-->
-      <!--}-->
-      <!--paper-button.indigo {-->
-        <!--background-color: var(&#45;&#45;paper-indigo-500);-->
-        <!--color: white;-->
-        <!--&#45;&#45;paper-button-raised-keyboard-focus: {-->
-          <!--background-color: var(&#45;&#45;paper-pink-a200) !important;-->
-          <!--color: white !important;-->
-        <!--};-->
-      <!--}-->
-      <!--paper-button.indigo:hover {-->
-        <!--background-color: var(&#45;&#45;paper-indigo-400);-->
-      <!--}-->
-      <!--paper-button.green {-->
-        <!--background-color: var(&#45;&#45;paper-green-500);-->
-        <!--color: white;-->
-      <!--}-->
-      <!--paper-button.green[active] {-->
-        <!--background-color: var(&#45;&#45;paper-red-500);-->
-      <!--}-->
-      <!--paper-button.disabled {-->
-        <!--color: white;-->
-      <!--}-->
-      <!--paper-spinner, paper-spinner-lite {-->
-        <!--margin: 8px 8px 8px 0;-->
-      <!--}-->
-      <!--paper-spinner-lite.orange {-->
-        <!--&#45;&#45;paper-spinner-color: var(&#45;&#45;google-yellow-500);-->
-      <!--}-->
-      <!--paper-spinner-lite.green {-->
-        <!--&#45;&#45;paper-spinner-color: var(&#45;&#45;google-green-500);-->
-      <!--}-->
-      <!--paper-spinner-lite.thin {-->
-        <!--&#45;&#45;paper-spinner-stroke-width: 1px;-->
-      <!--}-->
-      <!--paper-spinner-lite.thick {-->
-        <!--&#45;&#45;paper-spinner-stroke-width: 6px;-->
-      <!--}-->
-      <!--.container {-->
-        <!--display: flex;-->
-      <!--}-->
-    <!--</style>-->
+    <style is="custom-style">
+      paper-button {
+        font-family: 'Roboto', 'Noto', sans-serif;
+        font-weight: normal;
+        font-size: 14px;
+         -webkit-font-smoothing: antialiased;
+      }
+      paper-button.pink {
+        color: var(--paper-pink-a200);
+        --paper-button-ink-color: var(--paper-pink-a200);
+      }
+      paper-button.pink:hover {
+        background-color: var(--paper-pink-100);
+      }
+      paper-button.indigo {
+        background-color: var(--paper-indigo-500);
+        color: white;
+        --paper-button-raised-keyboard-focus: {
+          background-color: var(--paper-pink-a200) !important;
+          color: white !important;
+        };
+      }
+      paper-button.indigo:hover {
+        background-color: var(--paper-indigo-400);
+      }
+      paper-button.green {
+        background-color: var(--paper-green-500);
+        color: white;
+      }
+      paper-button.green[active] {
+        background-color: var(--paper-red-500);
+      }
+      paper-button.disabled {
+        color: white;
+      }
+      paper-spinner, paper-spinner-lite {
+        margin: 8px 8px 8px 0;
+      }
+      paper-spinner-lite.orange {
+        --paper-spinner-color: var(--google-yellow-500);
+      }
+      paper-spinner-lite.green {
+        --paper-spinner-color: var(--google-green-500);
+      }
+      paper-spinner-lite.thin {
+        --paper-spinner-stroke-width: 1px;
+      }
+      paper-spinner-lite.thick {
+        --paper-spinner-stroke-width: 6px;
+      }
+      .container {
+        display: flex;
+      }
+    </style>
 
   </head>
   <body>
 
-    <!--<div class="container">-->
-      <!--<paper-button class="pink">link</paper-button>-->
-      <!--<paper-button raised class="indigo">raised</paper-button>-->
-      <!--<paper-button toggles raised class="green">toggles</paper-button>-->
-      <!--<paper-button disabled class="disabled">disabled</paper-button>-->
-    <!--</div>-->
+    <div class="container">
+      <paper-button class="pink">link</paper-button>
+      <paper-button raised class="indigo">raised</paper-button>
+      <paper-button toggles raised class="green">toggles</paper-button>
+      <paper-button disabled class="disabled">disabled</paper-button>
+    </div>
 
-    <!--<div class="container">-->
-      <!--<paper-spinner active>...</paper-spinner>-->
-      <!--<paper-spinner-lite active class="orange"></paper-spinner-lite>-->
-      <!--<paper-spinner-lite active class="green"></paper-spinner-lite>-->
-      <!--<paper-spinner-lite active class="thin"></paper-spinner-lite>-->
-      <!--<paper-spinner-lite active class="thick"></paper-spinner-lite>-->
-    <!--</div>-->
+    <div class="container">
+      <paper-spinner active>...</paper-spinner>
+      <paper-spinner-lite active class="orange"></paper-spinner-lite>
+      <paper-spinner-lite active class="green"></paper-spinner-lite>
+      <paper-spinner-lite active class="thin"></paper-spinner-lite>
+      <paper-spinner-lite active class="thick"></paper-spinner-lite>
+    </div>
 
-    <my-app></my-app>
+    <!--<my-app></my-app>-->
 
     <noscript>
       Please enable JavaScript to view this website.
