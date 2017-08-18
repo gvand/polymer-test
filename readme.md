@@ -8,7 +8,7 @@
 - [Polymer](https://www.polymer-project.org/) (Unlock the Power of Web Components)
 - [Redux](http://redux.js.org/) (Predictable state container for JavaScript apps)
 - [Redux-Saga](https://yelouafi.github.io/redux-saga/index.html) (An alternative side effect model for Redux apps)
-- [Docker](https://yelouafi.github.io/redux-saga/index.html) (An alternative side effect model for Redux apps)
+- [Docker](https://www.docker.com/what-docker) (Build, Ship, and Run Any App, Anywhere)
 
 #### The setup is currently divided into 4 servers:
 
