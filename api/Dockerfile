@@ -5,16 +5,17 @@ MAINTAINER  Gerbrand van Dantzig <gerbrand.van.dantzig@gmail.com>
 RUN         apt-get update \
             && apt-get install -y --no-install-recommends git \
             && apt-get clean \
-            && useradd --user-group --create-home --shell /bin/false app
+            && useradd --user-group --create-home --shell /bin/false app \
+            && npm i -g yarn
 
 ENV         HOME=/home/app
 
-COPY        package.json $HOME/test/
+COPY        package.json yarn.lock $HOME/test/
 RUN         chown -R app:app $HOME/*
 
 USER        app
 WORKDIR     $HOME/test
-RUN         npm i
+RUN         yarn install --ignore-engines
 
 EXPOSE      8080
 

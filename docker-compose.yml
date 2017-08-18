@@ -1,11 +1,8 @@
-# bash into container $>
-# docker exec -it 5831c1269132 bash
+# bash into a running container
+# $> docker exec -it 5831c1269132 bash
 
-# create new project
+# create new polymer project
 # $> docker run --name polymer-project --rm -p 8081:8081 -v $(pwd):/home/app/test gvand/polymer polymer init polymer-2-starter-kit
-
-# serve project
-# $> docker run --name polymer-project --rm -p 8081:8081 -v $(pwd):/home/app/test gvand/polymer polymer serve -H 0.0.0.0
 
 version: "2.1"
 

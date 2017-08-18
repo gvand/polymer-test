@@ -1,12 +1,16 @@
 {
   "name": "polymer",
-  "license": "BSD-3-Clause",
+  "author": "Gerbrand van Dantzig <gerbrand.van.dantzig@gmail.com>",
+  "license": "MIT",
+  "version": "1.0.0",
+  "description": "",
   "devDependencies": {
     "eslint": "^3.19.0",
     "eslint-config-google": "^0.7.0",
     "eslint-plugin-html": "^2.0.0"
   },
   "scripts": {
+    "prestart": "yarn install",
     "start": "npm run serve | npm run watch",
     "serve": "polymer serve -H 0.0.0.0 -p 8081",
     "watch": "browser-sync start --proxy 'docker.localhost/' --ws --no-open --files './*.html', 'src/*.html'",
