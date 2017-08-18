@@ -8,8 +8,7 @@
 
     function fetch(query){
         return dispatch({
-            query: `answers=${query}`,
-            url: 'http://ci.gvand.net'
+            url: 'http://api.docker.localhost/all/2'
         });
     }
 
@@ -33,6 +32,9 @@
         try {
             yield ReduxSaga.effects.put(actions.pending(id));
             const data = yield ReduxSaga.effects.call(apiFunction, param || id);
+
+            console.log(id);
+            console.log(param);
             yield ReduxSaga.effects.put(actions.fulfilled(id, data));
         }
         catch (error) {
@@ -41,19 +43,27 @@
     }
 
     const fetchResult = fetchEntities.bind(null, fetch, {
-        fulfilled: function(){
+        fulfilled: function(id, result){
             return {
-                type: 'SUCCESS'
+                type: 'SUCCESS',
+                payload: {
+                    id: id,
+                    result: result
+                }
             }
         },
-        failed: function(){
+        failed: function(error){
             return {
-                type: 'FAILED'
+                type: 'FAILED',
+                payload: error
             }
         },
-        pending: function(){
+        pending: function(id){
             return {
-                type: 'PENDING'
+                type: 'PENDING',
+                payload: {
+                    id: id
+                }
             }
         }
     });
@@ -72,6 +82,11 @@
 
     const reducer = (state = {count: 0}, action) => {
         switch (action.type) {
+            case 'SUCCESS':
+                console.log(action);
+                return Object.assign({}, state, {
+                    count: parseInt(state.count + action.payload.result)
+                });
             case 'PLUS':
                 return Object.assign({}, state, {
                     count: parseInt(state.count + 1)
