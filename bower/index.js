@@ -54,17 +54,11 @@ app.use( (err, req, res, next) => {
 });
 
 app.use(function (req, res, next) {
-    // TODO: return 404
-    res
-    // .status(404)
-        .send(`Route not found: ${req.url}`);
+    res.send(`Route not found: ${req.url}`);
 });
 
 app.use(function (err, req, res, next) {
-    // console.error(err.stack)
-    res
-    // .status(500)
-        .send(`Some error happened: ${err.stack}`);
+    res.send(`Some error happened: ${err.stack}`);
 });
 
 app.listen(app.get('port'), app.get('host'), error => {
