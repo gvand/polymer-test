@@ -1,6 +1,3 @@
-#    command: --web --docker --docker.domain=docker.localhost --logLevel=DEBUG
-#    command: --web --docker --docker.watch --docker.domain=docker.localhost --logLevel=DEBUG --entryPoints="Name:http Address::80"
-
 debug = true
 checkNewVersion = true
 logLevel = "DEBUG"
