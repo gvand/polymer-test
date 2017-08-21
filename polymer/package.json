@@ -11,9 +11,8 @@
   },
   "scripts": {
     "prestart": "yarn install",
-    "start": "npm run serve | npm run watch",
+    "start": "npm run serve",
     "serve": "polymer serve -H 0.0.0.0 -p 8081",
-    "watch": "browser-sync start --proxy 'docker.localhost/' --ws --no-open --files './*.html', 'src/*.html'",
     "lint": "npm run lint:javascript && polymer lint",
     "lint:javascript": "eslint . --ext js,html --ignore-path .gitignore",
     "test": "polymer test",

@@ -32,9 +32,6 @@
         try {
             yield ReduxSaga.effects.put(actions.pending(id));
             const data = yield ReduxSaga.effects.call(apiFunction, param || id);
-
-            console.log(id);
-            console.log(param);
             yield ReduxSaga.effects.put(actions.fulfilled(id, data));
         }
         catch (error) {
@@ -43,7 +40,7 @@
     }
 
     const fetchResult = fetchEntities.bind(null, fetch, {
-        fulfilled: function(id, result){
+        fulfilled(id, result){
             return {
                 type: 'SUCCESS',
                 payload: {
@@ -52,13 +49,13 @@
                 }
             }
         },
-        failed: function(error){
+        failed(error){
             return {
                 type: 'FAILED',
                 payload: error
             }
         },
-        pending: function(id){
+        pending(id){
             return {
                 type: 'PENDING',
                 payload: {

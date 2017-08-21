@@ -1,20 +1,24 @@
 debug = true
 checkNewVersion = true
 logLevel = "DEBUG"
-defaultEntryPoints = ["http","http3000","http3001"]
+defaultEntryPoints = ["http", "ws", "wss"]
+
+[web]
+address = ":9001"
 
 [entryPoints]
   [entryPoints.http]
   address = ":80"
-  [entryPoints.http3000]
+  [entryPoints.http-3000]
   address = ":3000"
-  [entryPoints.http3001]
+  [entryPoints.http-3001]
   address = ":3001"
-
+  [entryPoints.http-9004]
+  address = ":9004"
 [retry]
 
 [docker]
 endpoint = "unix:///var/run/docker.sock"
 domain = "docker.localhost"
 watch = true
-exposedbydefault = false
+#exposedbydefault = false

@@ -14,14 +14,19 @@ services:
     restart: always
     networks:
       - app-network
+    labels:
+      - "traefik.backend=proxy"
+      - "traefik.admin.frontend.rule=Host:admin.docker.localhost"
+      - "traefik.admin.port=9001"
     ports:
       - "80:80"
       - "8080:8080"
-      - "3000:3000"
-      - "3001:3001"
+      - "9001:9001"
+#      - "3000:3000"
+#      - "3001:3001"
     volumes:
+      - ./traefik.toml:/etc/traefik/traefik.toml
       - /var/run/docker.sock:/var/run/docker.sock
-      - ./traefik.toml:/traefik.toml
 
   polymer:
     container_name: polymer
@@ -34,18 +39,11 @@ services:
       - "traefik.protocol=http"
       - "traefik.backend=polymer"
       - "traefik.frontend.rule=Host:docker.localhost"
-      - "traefik.polymer.port=8081"
-      - "traefik.polymer.frontend.entryPoints=http"
-      - "traefik.sync3000.port=3000"
-      - "traefik.sync3000.frontend.entryPoints=http3000"
-      - "traefik.sync3001.port=3001"
-      - "traefik.sync3001.frontend.entryPoints=http3001"
+      - "traefik.frontend.entryPoints=http"
       - "traefik.enable=true"
-      - "traefik.docker.network=app-network"
     ports:
       - "8081"
-      - "3000"
-      - "3001"
+#      - "8081:8081"
     volumes:
       - ./polymer:/home/app/test
       - ./polymer/node_modules:/home/app/test/node_modules
@@ -62,10 +60,9 @@ services:
       dockerfile: Dockerfile
     labels:
       - "traefik.port=8082"
-      - "traefik.backend=bower"
       - "traefik.protocol=http"
+      - "traefik.backend=bower"
       - "traefik.frontend.rule=Host:docker.localhost;PathPrefix:/bower_components/"
-      - "traefik.docker.network=app-network"
       - "traefik.enable=true"
     ports:
       - "8082"
@@ -88,8 +85,8 @@ services:
       - "traefik.backend=api"
       - "traefik.protocol=http"
       - "traefik.frontend.rule=Host:api.docker.localhost"
-      - "traefik.docker.network=app-network"
       - "traefik.enable=true"
+      - "traefik.priority=10"
     ports:
       - "8083"
     volumes:
@@ -97,6 +94,30 @@ services:
       - ./api/node_modules:/home/app/test/node_modules
     working_dir: /home/app/test
     command: ["npm", "start"]
+    networks:
+      - app-network
+
+#  browsersync:
+#    container_name: browsersync
+#    image: ustwo/browser-sync
+#    command: start --proxy 'polymer:8081' --files './*.html', 'src/*.html' --reload-debounce 2000 --notify false
+#    labels:
+#      - "traefik.backend=browsersync"
+#      - "traefik.proxy.frontend.rule=Host:bs.docker.localhost"
+#      - "traefik.proxy.frontend.entryPoints=http,http-3000"
+#      - "traefik.proxy.port=3000"
+#      - "traefik.admin.frontend.rule=Host:bs.docker.localhost"
+#      - "traefik.admin.frontend.entryPoints=http,http-3001"
+#      - "traefik.admin.port=3001"
+#      - "traefik.enable=true"
+#    ports:
+#      - "3000:3000"
+#      - "3001:3001"
+#      - "80"
+#      - "8080"
+#      - "3000"
+#      - "3001"
+
     networks:
       - app-network
 
