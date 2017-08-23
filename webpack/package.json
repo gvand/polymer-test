@@ -1,0 +1,32 @@
+{
+  "name": "polymer-webpack",
+  "version": "1.0.0",
+  "description": "polymer webpack",
+  "scripts": {
+    "prestart": "yarn install & bower install --force-latest",
+    "start": "webpack-dev-server --open",
+    "build": "webpack"
+  },
+  "author": "Gerbrand van Dantzig",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-core": "^6.25.0",
+    "babel-loader": "^7.1.1",
+    "babel-preset-env": "^1.6.0",
+    "copy-webpack-plugin": "^4.0.1",
+    "date-fns": "^1.28.5",
+    "html-webpack-plugin": "^2.29.0",
+    "polymer-webpack-loader": "^2.0.0",
+    "webpack": "^3.0.0",
+    "webpack-dev-server": "^2.5.0"
+  },
+  "dependencies": {
+    "babel-plugin-syntax-dynamic-import": "^6.18.0",
+    "babel-plugin-transform-object-assign": "^6.22.0",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "polymer-redux": "^1.0.2",
+    "ramda": "^0.24.1",
+    "redux": "^3.7.2",
+    "redux-saga": "^0.15.6"
+  }
+}

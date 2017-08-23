@@ -18,6 +18,6 @@ USER        app
 WORKDIR     $HOME/test
 RUN         yarn install --ignore-engines
 
-EXPOSE      8080
+EXPOSE      8082
 
 CMD         bash

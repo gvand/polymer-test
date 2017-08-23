@@ -86,6 +86,10 @@ brace-expansion@^1.1.7:
     balanced-match "^1.0.0"
     concat-map "0.0.1"
 
+browsersync@0.0.1-security:
+  version "0.0.1-security"
+  resolved "https://registry.yarnpkg.com/browsersync/-/browsersync-0.0.1-security.tgz#e885fe4354d2ec5a565c38c4c2bf0a012ad64860"
+
 caller-path@^0.1.0:
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/caller-path/-/caller-path-0.1.0.tgz#94085ef63581ecd3daa92444a8fe94e82577751f"

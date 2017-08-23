@@ -1,0 +1,140 @@
+import './app.html';
+
+// function getComponent() {
+//     return import(
+//         /* webpackChunkName: "ramda" */
+//         /* webpackMode: "lazy" */
+//         'ramda'
+//         ).then(R => {
+//         console.log('ramda');
+//     });
+// }
+
+// getComponent().then(component => {
+//
+// });
+
+
+
+
+
+
+
+
+
+
+
+// <link rel="import" href="../bower_components/polymer-redux/dist/polymer-redux.html">
+//
+//     <script src="../node_modules/redux/dist/redux.js"></script>
+//     <script src="../node_modules/redux-saga/dist/redux-saga.js"></script>
+//     <script src="../node_modules/superagent/superagent.js"></script>
+//
+//     <script>
+//
+//     function fetch(query){
+//         return dispatch({
+//             url: 'http://api.docker.localhost/all/2'
+//         });
+//     }
+//
+// function dispatch(options) {
+//     return superagent[options.method || 'get'](requestUrl(options))
+//         .set('Accept', 'application/json')
+//         .then(response => response.body);
+// }
+//
+// function requestUrl({query, url}) {
+//     let params = [];
+//     if (query) params.push(query);
+//     if (params.length) {
+//         url += url.indexOf('?') === -1 ? '?' : '&';
+//         url += params.join('&');
+//     }
+//     return url;
+// }
+//
+// function* fetchEntities(apiFunction, actions, id, param) {
+//     try {
+//         yield ReduxSaga.effects.put(actions.pending(id));
+//         const data = yield ReduxSaga.effects.call(apiFunction, param || id);
+//         yield ReduxSaga.effects.put(actions.fulfilled(id, data));
+//     }
+//     catch (error) {
+//         yield ReduxSaga.effects.put(actions.failed(error));
+//     }
+// }
+//
+// const fetchResult = fetchEntities.bind(null, fetch, {
+//     fulfilled(id, result){
+//         return {
+//             type: 'SUCCESS',
+//             payload: {
+//                 id: id,
+//                 result: result
+//             }
+//         }
+//     },
+//     failed(error){
+//         return {
+//             type: 'FAILED',
+//             payload: error
+//         }
+//     },
+//     pending(id){
+//         return {
+//             type: 'PENDING',
+//             payload: {
+//                 id: id
+//             }
+//         }
+//     }
+// });
+//
+// function* loadResults() {
+//     yield ReduxSaga.effects.call(fetchResult);
+// }
+//
+// function* watchLoadResult() {
+//     yield* ReduxSaga.takeLatest('LOAD', loadResults);
+// }
+//
+// function* sagas() {
+//     yield ReduxSaga.effects.fork(watchLoadResult);
+// }
+//
+// const reducer = (state = {count: 0}, action) => {
+//     switch (action.type) {
+//         case 'SUCCESS':
+//             console.log(action);
+//             return Object.assign({}, state, {
+//                 count: parseInt(state.count + action.payload.result)
+//             });
+//         case 'PLUS':
+//             return Object.assign({}, state, {
+//                 count: parseInt(state.count + 1)
+//             });
+//         case 'MINUS':
+//             return Object.assign({}, state, {
+//                 count: parseInt(state.count - 1)
+//             });
+//         default:
+//             return  state;
+//     }
+// };
+//
+// const sagaMiddleware = ReduxSaga.default();
+// const middleware = Redux.applyMiddleware(sagaMiddleware);
+//
+// const composeEnhancers =
+//     typeof window === 'object' &&
+//     window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({}) : Redux.compose;
+//
+// const enhancer = composeEnhancers(middleware);
+// const store = Redux.createStore(reducer, {count: 0}, enhancer);
+//
+// sagaMiddleware.run(sagas);
+//
+// ReduxMixin = PolymerRedux(store);
+//
+// </script>

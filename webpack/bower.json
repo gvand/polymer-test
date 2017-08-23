@@ -1,0 +1,20 @@
+{
+  "name": "polymer-webpack",
+  "private": true,
+  "description": "polymer-webpack",
+  "authors": [
+    "Gerbrand van Dantzig"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#^2.0.1",
+    "polymer-redux": "^1.0.2"
+  }
+}

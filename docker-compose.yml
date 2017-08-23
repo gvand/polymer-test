@@ -21,9 +21,9 @@ services:
     ports:
       - "80:80"
       - "8080:8080"
+      - "3000:3000"
+      - "3001:3001"
       - "9001:9001"
-#      - "3000:3000"
-#      - "3001:3001"
     volumes:
       - ./traefik.toml:/etc/traefik/traefik.toml
       - /var/run/docker.sock:/var/run/docker.sock
@@ -35,15 +35,25 @@ services:
       context: ./polymer
       dockerfile: Dockerfile
     labels:
-      - "traefik.port=8081"
-      - "traefik.protocol=http"
-      - "traefik.backend=polymer"
-      - "traefik.frontend.rule=Host:docker.localhost"
-      - "traefik.frontend.entryPoints=http"
+      - "traefik.frontend.backend=polymer"
+      - "traefik.public.port=8081"
+      - "traefik.public.protocol=http"
+      - "traefik.public.frontend.passHostHeader=true"
+      - "traefik.public.frontend.entryPoints=http,http-3000"
+      - "traefik.public.frontend.rule=Host:docker.localhost"
+      - "traefik.proxy.port=3000"
+      - "traefik.proxy.frontend.passHostHeader=true"
+      - "traefik.proxy.frontend.entryPoints=http-3000"
+      - "traefik.proxy.frontend.rule=Host:docker.localhost"
+      - "traefik.admin.port=3001"
+      - "traefik.admin.frontend.passHostHeader=true"
+      - "traefik.admin.frontend.entryPoints=http-3001"
+      - "traefik.admin.frontend.rule=Host:docker.localhost"
       - "traefik.enable=true"
     ports:
       - "8081"
-#      - "8081:8081"
+      - "3000"
+      - "3001"
     volumes:
       - ./polymer:/home/app/test
       - ./polymer/node_modules:/home/app/test/node_modules
@@ -63,6 +73,7 @@ services:
       - "traefik.protocol=http"
       - "traefik.backend=bower"
       - "traefik.frontend.rule=Host:docker.localhost;PathPrefix:/bower_components/"
+      - "traefik.frontend.entryPoints=http,http-3000,http-3001"
       - "traefik.enable=true"
     ports:
       - "8082"
@@ -97,6 +108,30 @@ services:
     networks:
       - app-network
 
+  webpack:
+    container_name: webpack
+    image: ing/webpack
+    build:
+      context: ./webpack
+      dockerfile: Dockerfile
+    labels:
+      - "traefik.port=9000"
+      - "traefik.protocol=http"
+      - "traefik.frontend.backend=webpack"
+      - "traefik.frontend.passHostHeader=true"
+      - "traefik.frontend.entryPoints=http"
+      - "traefik.frontend.rule=Host:webpack.docker.localhost"
+      - "traefik.enable=true"
+    ports:
+      - "9000"
+    volumes:
+      - ./webpack:/home/app/test
+      - ./webpack/node_modules:/home/app/test/node_modules
+    working_dir: /home/app/test
+    command: ["npm", "start"]
+    networks:
+      - app-network
+
 #  browsersync:
 #    container_name: browsersync
 #    image: ustwo/browser-sync
@@ -117,9 +152,8 @@ services:
 #      - "8080"
 #      - "3000"
 #      - "3001"
-
-    networks:
-      - app-network
+#    networks:
+#      - app-network
 
 networks:
     app-network:

@@ -1,0 +1,29 @@
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+
+<dom-module id="my-app">
+    <template>
+        <p>[[count]]</p>
+        <button on-click="handlePlus">+</button>
+        <button on-click="handleMinus">-</button>
+    </template>
+    <script>
+        import CountMixin from './count';
+        class MyApp extends CountMixin(Polymer.Element) {
+
+            static get is() { return 'my-app'; }
+
+            handlePlus() {
+                this.dispatch('plus');
+            }
+            handleMinus() {
+                this.dispatch('minus');
+            }
+            connectedCallback(){
+                super.connectedCallback();
+//                const state = this.getState();
+                this.dispatch('loadResult');
+            }
+        }
+        window.customElements.define(MyApp.is, MyApp);
+    </script>
+</dom-module>

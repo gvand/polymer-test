@@ -6,9 +6,7 @@ RUN         apt-get update \
             && apt-get install -y --no-install-recommends git \
             && apt-get clean \
             && useradd --user-group --create-home --shell /bin/false app \
-            && npm i -g gulp bower polymer-cli --unsafe-perm \
-            && npm i -g generator-polymer-init-custom-build \
-            && npm i -g browser-sync \
+            && npm i -g bower \
             && npm i -g yarn
 
 ENV         HOME=/home/app
@@ -20,6 +18,6 @@ USER        app
 WORKDIR     $HOME/test
 RUN         yarn install --ignore-engines
 
-EXPOSE      8081 3000 3001 3002 3003
+EXPOSE      9000
 
 CMD         bash
