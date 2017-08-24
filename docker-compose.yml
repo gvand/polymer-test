@@ -28,39 +28,39 @@ services:
       - ./traefik.toml:/etc/traefik/traefik.toml
       - /var/run/docker.sock:/var/run/docker.sock
 
-  polymer:
-    container_name: polymer
-    image: ing/polymer
-    build:
-      context: ./polymer
-      dockerfile: Dockerfile
-    labels:
-      - "traefik.frontend.backend=polymer"
-      - "traefik.public.port=8081"
-      - "traefik.public.protocol=http"
-      - "traefik.public.frontend.passHostHeader=true"
-      - "traefik.public.frontend.entryPoints=http,http-3000"
-      - "traefik.public.frontend.rule=Host:docker.localhost"
-      - "traefik.proxy.port=3000"
-      - "traefik.proxy.frontend.passHostHeader=true"
-      - "traefik.proxy.frontend.entryPoints=http-3000"
-      - "traefik.proxy.frontend.rule=Host:docker.localhost"
-      - "traefik.admin.port=3001"
-      - "traefik.admin.frontend.passHostHeader=true"
-      - "traefik.admin.frontend.entryPoints=http-3001"
-      - "traefik.admin.frontend.rule=Host:docker.localhost"
-      - "traefik.enable=true"
-    ports:
-      - "8081"
-      - "3000"
-      - "3001"
-    volumes:
-      - ./polymer:/home/app/test
-      - ./polymer/node_modules:/home/app/test/node_modules
-    working_dir: /home/app/test
-    command: ["npm", "start"]
-    networks:
-      - app-network
+#  polymer:
+#    container_name: polymer
+#    image: ing/polymer
+#    build:
+#      context: ./polymer
+#      dockerfile: Dockerfile
+#    labels:
+#      - "traefik.frontend.backend=polymer"
+#      - "traefik.public.port=8081"
+#      - "traefik.public.protocol=http"
+#      - "traefik.public.frontend.passHostHeader=true"
+#      - "traefik.public.frontend.entryPoints=http,http-3000"
+#      - "traefik.public.frontend.rule=Host:docker.localhost"
+#      - "traefik.proxy.port=3000"
+#      - "traefik.proxy.frontend.passHostHeader=true"
+#      - "traefik.proxy.frontend.entryPoints=http-3000"
+#      - "traefik.proxy.frontend.rule=Host:docker.localhost"
+#      - "traefik.admin.port=3001"
+#      - "traefik.admin.frontend.passHostHeader=true"
+#      - "traefik.admin.frontend.entryPoints=http-3001"
+#      - "traefik.admin.frontend.rule=Host:docker.localhost"
+#      - "traefik.enable=true"
+#    ports:
+#      - "8081"
+#      - "3000"
+#      - "3001"
+#    volumes:
+#      - ./polymer:/home/app/test
+#      - ./polymer/node_modules:/home/app/test/node_modules
+#    working_dir: /home/app/test
+#    command: ["npm", "start"]
+#    networks:
+#      - app-network
 
   bower:
     container_name: bower

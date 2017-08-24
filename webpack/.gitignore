@@ -17,7 +17,7 @@ Icon
 # Thumbnails
 ._*
 
-# Files that might appear in the root of a volume
+# Files that might appear in the root of a3 volume
 .DocumentRevisions-V100
 .fseventsd
 .Spotlight-V100
@@ -158,3 +158,4 @@ fabric.properties
 # End of https://www.gitignore.io/api/node,bower,macos,webstorm
 
 build/
+dist/

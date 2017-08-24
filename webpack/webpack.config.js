@@ -20,9 +20,9 @@ module.exports = {
             path.resolve(__dirname, 'node_modules'),
             path.resolve(__dirname, 'bower_components')
         ],
-        // alias: {
-        //     'polymer-redux': 'polymer-redux/src/index'
-        // }
+        alias: {
+            'polymer-redux': 'polymer-redux/src/index'
+        }
     },
     module: {
         rules: [
@@ -53,6 +53,7 @@ module.exports = {
         }
     },
     plugins: [
+        new webpack.optimize.UglifyJsPlugin(),
         new HtmlWebpackPlugin({
             template: path.resolve(__dirname, 'src/index.ejs'),
             inject: false

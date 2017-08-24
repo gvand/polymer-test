@@ -1,0 +1,56 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../bower_components/vaadin-combo-box/vaadin-combo-box.html">
+<link rel="import" href="../../bower_components/vaadin-grid/vaadin-grid.html">
+
+<dom-module id="ing-github">
+    <template>
+        <vaadin-combo-box id="username-list"
+                          items="[[suggestions]]"
+                          on-change="onComboBoxChange"
+                          value="[[username]]">
+        </vaadin-combo-box>
+        <vaadin-grid items="[[repositories]]">
+            <vaadin-grid-column width="50px" flex-grow="0">
+                <template class="header">#</template>
+                <template>[[index]]</template>
+            </vaadin-grid-column>
+            <vaadin-grid-column flex-grow="1">
+                <template class="header"><span draggable="true">Name</span></template>
+                <template>
+                    <span draggable="true">
+                        <a href="[[item.html_url]]" target="_blank">[[item.name]]</a>
+                    </span>
+                </template>
+            </vaadin-grid-column>
+            <vaadin-grid-column flex-grow="1">
+                <template class="header"><span draggable="true">Name</span></template>
+                <template>
+                    <span draggable="true">
+                        [[item.description]]
+                    </span>
+                </template>
+            </vaadin-grid-column>
+        </vaadin-grid>
+    </template>
+    <script>
+        import GitHubMixin from './mixin';
+        class IngGithub extends GitHubMixin(Polymer.Element) {
+
+            static get is() {
+                return 'ing-github';
+            }
+
+            connectedCallback() {
+                super.connectedCallback();
+                if (this.username && this.username.trim().length > 0) {
+                    this.dispatch('githubReposRequest');
+                }
+            }
+
+            onComboBoxChange() {
+                this.dispatch('githubUsernameChange', this.$['username-list'].value);
+            }
+        }
+        window.customElements.define(IngGithub.is, IngGithub);
+    </script>
+</dom-module>

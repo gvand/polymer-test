@@ -1,1 +1,0 @@
-export { fetchResult } from './sagas';

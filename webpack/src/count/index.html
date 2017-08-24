@@ -1,0 +1,24 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+
+<dom-module id="ing-count">
+    <template>
+        <p>[[count]]</p>
+        <button on-click="handlePlus">+</button>
+        <button on-click="handleMinus">-</button>
+    </template>
+    <script>
+        import CountMixin from './mixin';
+        class IngCount extends CountMixin(Polymer.Element) {
+
+            static get is() { return 'ing-count'; }
+
+            handlePlus() {
+                this.dispatch('plus');
+            }
+            handleMinus() {
+                this.dispatch('minus');
+            }
+        }
+        window.customElements.define(IngCount.is, IngCount);
+    </script>
+</dom-module>

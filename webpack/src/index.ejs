@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
-<my-app/>
+<ing-count></ing-count>
+<ing-github></ing-github>
 <div id="ce-es5-shim">
     <script type="text/javascript">
         if (!window.customElements) {
@@ -22,7 +23,6 @@
             document.removeEventListener('WebComponentsReady', componentsReady, false);
             const ref = document.getElementsByTagName('script')[0];
             [<% for(var i = 0; i < htmlWebpackPlugin.files.js.length; i++) { %>'<%= htmlWebpackPlugin.files.js[i] %>',<% } %>]
-                .reverse()
                 .map(item => {
                     let tag = document.createElement('script');
                     tag.src = item

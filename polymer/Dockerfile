@@ -13,7 +13,7 @@ RUN         apt-get update \
 
 ENV         HOME=/home/app
 
-COPY        package.json yarn.lock $HOME/test/
+COPY        package.json yarn.* $HOME/test/
 RUN         chown -R app:app $HOME/*
 
 USER        app
