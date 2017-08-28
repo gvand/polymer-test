@@ -10,6 +10,6 @@ export const reducer = (state = { number: 0 }, action) => {
         case MINUS:
             return state = {...state, number: parseInt(state.number - 1)};
         default:
-            return  state;
+            return state;
     }
 };

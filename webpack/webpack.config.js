@@ -19,29 +19,23 @@ module.exports = {
         modules: [
             path.resolve(__dirname, 'node_modules'),
             path.resolve(__dirname, 'bower_components')
-        ],
-        alias: {
-            'polymer-redux': 'polymer-redux/src/index'
-        }
+        ]
     },
     module: {
         rules: [
             {
-                test: /\.html$/,
-                use: [
-                    { loader: 'babel-loader' },
-                    { loader: 'polymer-webpack-loader' }
-                ]
+                test: /\.js$/,
+                use: ['babel-loader']
             },
             {
-                test: /\.js$/,
-                use: 'babel-loader'
+                test: /\.html$/,
+                use: ['babel-loader', 'wc-loader', 'postcss-polymer-loader']
             }
         ]
     },
     devServer: {
         contentBase: path.join(__dirname, 'dist'),
-        compress: true,
+        compress: false,
         host: "0.0.0.0",
         port: 9000,
         public:'webpack.docker.localhost',
@@ -53,7 +47,6 @@ module.exports = {
         }
     },
     plugins: [
-        new webpack.optimize.UglifyJsPlugin(),
         new HtmlWebpackPlugin({
             template: path.resolve(__dirname, 'src/index.ejs'),
             inject: false
@@ -62,8 +55,8 @@ module.exports = {
             from: path.resolve(__dirname, 'bower_components/webcomponentsjs/*.js'),
             to: 'bower_components/webcomponentsjs/[name].[ext]'
         }]),
-        new webpack.optimize.CommonsChunkPlugin({
-            name: 'common'
-        })
+        // new webpack.optimize.CommonsChunkPlugin({
+        //     name: 'common'
+        // })
     ]
 };

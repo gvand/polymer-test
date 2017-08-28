@@ -1,16 +1,10 @@
 {
-  "presets": [
-    ["env", {
-      "modules": false,
-      "targets": {
-        "browsers": ["last 2 versions"]
-      }
-    }]
-  ],
+  "presets": ["es2015", "stage-0"],
   "plugins": [
     "syntax-dynamic-import",
     "transform-object-rest-spread",
     "transform-object-assign",
+    "transform-es2015-destructuring",
     ["transform-runtime", {
       "helpers": false,
       "polyfill": false,

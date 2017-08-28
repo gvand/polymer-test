@@ -62,28 +62,28 @@ services:
 #    networks:
 #      - app-network
 
-  bower:
-    container_name: bower
-    image: ing/bower
-    build:
-      context: ./bower
-      dockerfile: Dockerfile
-    labels:
-      - "traefik.port=8082"
-      - "traefik.protocol=http"
-      - "traefik.backend=bower"
-      - "traefik.frontend.rule=Host:docker.localhost;PathPrefix:/bower_components/"
-      - "traefik.frontend.entryPoints=http,http-3000,http-3001"
-      - "traefik.enable=true"
-    ports:
-      - "8082"
-    volumes:
-      - ./bower:/home/app/test
-      - ./bower/node_modules:/home/app/test/node_modules
-    working_dir: /home/app/test
-    command: ["npm", "start"]
-    networks:
-      - app-network
+#  bower:
+#    container_name: bower
+#    image: ing/bower
+#    build:
+#      context: ./bower
+#      dockerfile: Dockerfile
+#    labels:
+#      - "traefik.port=8082"
+#      - "traefik.protocol=http"
+#      - "traefik.backend=bower"
+#      - "traefik.frontend.rule=Host:docker.localhost;PathPrefix:/bower_components/"
+#      - "traefik.frontend.entryPoints=http,http-3000,http-3001"
+#      - "traefik.enable=true"
+#    ports:
+#      - "8082"
+#    volumes:
+#      - ./bower:/home/app/test
+#      - ./bower/node_modules:/home/app/test/node_modules
+#    working_dir: /home/app/test
+#    command: ["npm", "start"]
+#    networks:
+#      - app-network
 
   api:
     container_name: api
@@ -131,29 +131,6 @@ services:
     command: ["npm", "start"]
     networks:
       - app-network
-
-#  browsersync:
-#    container_name: browsersync
-#    image: ustwo/browser-sync
-#    command: start --proxy 'polymer:8081' --files './*.html', 'src/*.html' --reload-debounce 2000 --notify false
-#    labels:
-#      - "traefik.backend=browsersync"
-#      - "traefik.proxy.frontend.rule=Host:bs.docker.localhost"
-#      - "traefik.proxy.frontend.entryPoints=http,http-3000"
-#      - "traefik.proxy.port=3000"
-#      - "traefik.admin.frontend.rule=Host:bs.docker.localhost"
-#      - "traefik.admin.frontend.entryPoints=http,http-3001"
-#      - "traefik.admin.port=3001"
-#      - "traefik.enable=true"
-#    ports:
-#      - "3000:3000"
-#      - "3001:3001"
-#      - "80"
-#      - "8080"
-#      - "3000"
-#      - "3001"
-#    networks:
-#      - app-network
 
 networks:
     app-network:

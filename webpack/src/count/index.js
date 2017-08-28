@@ -1,4 +1,33 @@
-import CountMixin from './mixin';
-export { reducer } from './reducer';
-export * from './actions';
-export default CountMixin;
+import './template.html';
+import ReduxMixin from '../ReduxMixin';
+import {plus, minus} from './actions';
+
+class IngCount extends ReduxMixin(Polymer.Element) {
+
+    static get is() { return 'ing-count'; }
+
+    static get properties() {
+        return {
+            count: {
+                type: Number,
+                statePath: 'count.number'
+            }
+        };
+    }
+
+    static get actions() {
+        return {
+            plus,
+            minus
+        };
+    }
+
+    handlePlus() {
+        this.dispatch('plus');
+    }
+    handleMinus() {
+        this.dispatch('minus');
+    }
+}
+
+window.customElements.define(IngCount.is, IngCount);

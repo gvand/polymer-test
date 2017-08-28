@@ -3,6 +3,8 @@
 <link rel="import" href="../../bower_components/vaadin-grid/vaadin-grid.html">
 
 <dom-module id="ing-github">
+    <postcss src="./../style.postcss"></postcss>
+    <postcss src="./style.postcss"></postcss>
     <template>
         <vaadin-combo-box id="username-list"
                           items="[[suggestions]]"
@@ -11,46 +13,35 @@
         </vaadin-combo-box>
         <vaadin-grid items="[[repositories]]">
             <vaadin-grid-column width="50px" flex-grow="0">
-                <template class="header">#</template>
-                <template>[[index]]</template>
+                <template class="header">
+                    <span class="cell">#</span>
+                </template>
+                <template>
+                    <span class="cell">[[index]]</span>
+                </template>
             </vaadin-grid-column>
             <vaadin-grid-column flex-grow="1">
-                <template class="header"><span draggable="true">Name</span></template>
+                <template class="header">
+                    <span class="cell" draggable="true">Name</span>
+                </template>
                 <template>
-                    <span draggable="true">
+                    <span draggable="true" class="cell">
                         <a href="[[item.html_url]]" target="_blank">[[item.name]]</a>
                     </span>
                 </template>
             </vaadin-grid-column>
             <vaadin-grid-column flex-grow="1">
-                <template class="header"><span draggable="true">Name</span></template>
+                <template class="header">
+                    <span draggable="true" class="cell">
+                        Name
+                    </span>
+                </template>
                 <template>
-                    <span draggable="true">
+                    <span draggable="true" class="cell">
                         [[item.description]]
                     </span>
                 </template>
             </vaadin-grid-column>
         </vaadin-grid>
     </template>
-    <script>
-        import GitHubMixin from './mixin';
-        class IngGithub extends GitHubMixin(Polymer.Element) {
-
-            static get is() {
-                return 'ing-github';
-            }
-
-            connectedCallback() {
-                super.connectedCallback();
-                if (this.username && this.username.trim().length > 0) {
-                    this.dispatch('githubReposRequest');
-                }
-            }
-
-            onComboBoxChange() {
-                this.dispatch('githubUsernameChange', this.$['username-list'].value);
-            }
-        }
-        window.customElements.define(IngGithub.is, IngGithub);
-    </script>
 </dom-module>

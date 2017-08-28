@@ -1,2 +1,2 @@
-import './count/index.html';
-import './github/index.html';
+import './count';
+import './github';
