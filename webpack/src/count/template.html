@@ -1,10 +1,23 @@
 <link rel="import" href="../../bower_components/polymer/polymer-element.html">
 <dom-module id="ing-count">
-    <postcss src="./../style.postcss"></postcss>
-    <postcss src="./style.postcss"></postcss>
+    <postcss src="./style.css"></postcss>
     <template>
-        <p>[[count]]</p>
-        <button on-click="handlePlus">+</button>
-        <button on-click="handleMinus">-</button>
+        <p class="counter">[[count]]</p>
+        <div class="container">
+            <div class="flex__container">
+                <button class="flex__item btn"
+                        on-click="handlePlus">
+                    <span class="btn__content">+</span>
+                </button>
+                <button class="flex__item btn"
+                        on-click="handleMinus">
+                    <span class="btn__content">-</span>
+                </button>
+                <button class="flex__item btn"
+                        on-click="changeTheme">
+                    <span class="btn__content btn__content--error">make it red</span>
+                </button>
+            </div>
+        </div>
     </template>
 </dom-module>

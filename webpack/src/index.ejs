@@ -4,9 +4,36 @@
     <meta charset="utf-8">
     <title>Polymer Webpack Test</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <base href="/">
+    <!--<link rel="import" href="../bower_components/shadycss/apply-shim.html">-->
+    <style is="custom-style">
+        :root {
+            --xs: 4px;
+            --s: 8px;
+            --m: 16px;
+            --l: 20px;
+            --xl: 28px;
+            --xxl: 36px;
+
+            --black-30: #dcdcdc;
+            --black-60: #949494;
+            --black-100: #333;
+
+            --red-100: #d91a2a;
+
+            --light: {
+                background-color: var(--black-30);
+            };
+        }
+        ing-count {
+            --ing-count-theme: {
+                background-color: yellow;
+            }
+        }
+    </style>
 </head>
 <body>
-<ing-count></ing-count>
+<ing-count class="dark-theme"></ing-count>
 <ing-github></ing-github>
 <div id="ce-es5-shim">
     <script type="text/javascript">

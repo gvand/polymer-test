@@ -22,6 +22,12 @@ class IngCount extends ReduxMixin(Polymer.Element) {
         };
     }
 
+    changeTheme() {
+        this.updateStyles({
+            '--ing-count-color': '#d91a2a'
+        });
+    }
+
     handlePlus() {
         this.dispatch('plus');
     }

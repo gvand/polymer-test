@@ -4,6 +4,9 @@
 # create new polymer project
 # $> docker run --name polymer-project --rm -p 8081:8081 -v $(pwd):/home/app/test gvand/polymer polymer init polymer-2-starter-kit
 
+# enable experimental flag: Experimental Web Platform features
+# chrome://flags/
+
 version: "2.1"
 
 services:

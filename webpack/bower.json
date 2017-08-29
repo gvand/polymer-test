@@ -17,6 +17,7 @@
     "polymer": "Polymer/polymer#^2.0.1",
     "polymer-redux": "^1.0.2",
     "vaadin-combo-box": "^2.0.0",
-    "vaadin-grid": "^3.0.1"
+    "vaadin-grid": "^3.0.1",
+    "shadycss": "^1.0.5"
   }
 }
