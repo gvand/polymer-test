@@ -88,28 +88,28 @@ services:
 #    networks:
 #      - app-network
 
-  api:
-    container_name: api
-    image: ing/api
-    build:
-      context: ./api
-      dockerfile: Dockerfile
-    labels:
-      - "traefik.port=8083"
-      - "traefik.backend=api"
-      - "traefik.protocol=http"
-      - "traefik.frontend.rule=Host:api.docker.localhost"
-      - "traefik.enable=true"
-      - "traefik.priority=10"
-    ports:
-      - "8083"
-    volumes:
-      - ./api:/home/app/test
-      - ./api/node_modules:/home/app/test/node_modules
-    working_dir: /home/app/test
-    command: ["npm", "start"]
-    networks:
-      - app-network
+#  api:
+#    container_name: api
+#    image: ing/api
+#    build:
+#      context: ./api
+#      dockerfile: Dockerfile
+#    labels:
+#      - "traefik.port=8083"
+#      - "traefik.backend=api"
+#      - "traefik.protocol=http"
+#      - "traefik.frontend.rule=Host:api.docker.localhost"
+#      - "traefik.enable=true"
+#      - "traefik.priority=10"
+#    ports:
+#      - "8083"
+#    volumes:
+#      - ./api:/home/app/test
+#      - ./api/node_modules:/home/app/test/node_modules
+#    working_dir: /home/app/test
+#    command: ["npm", "start"]
+#    networks:
+#      - app-network
 
   webpack:
     container_name: webpack
