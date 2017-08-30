@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "polymer webpack",
   "scripts": {
-    "prestart": "yarn install && bower install --force-latest",
+    "prestart": "bower install --force-latest && yarn install",
     "start": "webpack-dev-server --open",
     "build": "webpack"
   },
