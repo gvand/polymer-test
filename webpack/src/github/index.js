@@ -1,6 +1,10 @@
 import './template.html';
 import ReduxMixin from '../ReduxMixin';
-import { githubUsernameChange, githubReposRequest } from './actions';
+import {
+    githubUsernameChange,
+    githubUsernameInput,
+    githubReposRequest
+} from './actions';
 
 class IngGithub extends ReduxMixin(Polymer.Element) {
 
@@ -21,6 +25,10 @@ class IngGithub extends ReduxMixin(Polymer.Element) {
             username: {
                 type: String,
                 statePath: 'github.username'
+            },
+            filter: {
+                type: String,
+                statePath: 'github.filter'
             }
         };
     }
@@ -28,6 +36,7 @@ class IngGithub extends ReduxMixin(Polymer.Element) {
     static get actions() {
         return {
             githubUsernameChange,
+            githubUsernameInput,
             githubReposRequest
         };
     }
@@ -39,8 +48,12 @@ class IngGithub extends ReduxMixin(Polymer.Element) {
         }
     }
 
-    onComboBoxChange() {
+    onChange() {
         this.dispatch('githubUsernameChange', this.$['username-list'].value);
+    }
+
+    onFilter() {
+        this.dispatch('githubUsernameInput', this.$['username-list'].filter);
     }
 }
 

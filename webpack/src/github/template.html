@@ -3,12 +3,14 @@
 <link rel="import" href="../../bower_components/vaadin-grid/vaadin-grid.html">
 
 <dom-module id="ing-github">
-    <postcss src="./../style.css"></postcss>
-    <postcss src="./style.css"></postcss>
+    <postcss src="./../style.pcss"></postcss>
+    <postcss src="./style.pcss"></postcss>
     <template>
         <vaadin-combo-box id="username-list"
-                          items="[[suggestions]]"
-                          on-change="onComboBoxChange"
+                          filtered-items="[[suggestions]]"
+                          on-input="onFilter"
+                          on-change="onChange"
+                          filter="[[filter]]"
                           value="[[username]]">
         </vaadin-combo-box>
         <vaadin-grid items="[[repositories]]">

@@ -2,10 +2,18 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Polymer Webpack Test</title>
+    <title><%= htmlWebpackPlugin.options.title %></title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <base href="/">
-    <!--<link rel="import" href="../bower_components/shadycss/apply-shim.html">-->
+
+    <script >
+        if (window.location.hash.indexOf('systemfonts') < 0) {
+            //ToDo: inline script
+        } else {
+            document.write('<style>body,[data-showcar-ui]{font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, "Segoe UI Symbol" !important; }</style>');
+        }
+    </script>
+
     <style is="custom-style">
         :root {
             --xs: 4px;

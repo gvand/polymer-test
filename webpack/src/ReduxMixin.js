@@ -4,24 +4,21 @@ import PolymerRedux from 'polymer-redux';
 
 import { reducer as countReducer } from './count/reducer';
 import { reducer as githubReducer } from './github/reducer';
-import { sagas as githubSagas } from './github/sagas';
+import sagas from './github/sagas';
 
 const reducers = combineReducers({
     count: countReducer,
     github: githubReducer
 });
 
-function* sagas() {
-    yield [...githubSagas];
-}
-
 const initialState = {
     count: {
         number: 0
     },
     github: {
-        username: 'gvand',
-        suggestions: ['amitevski','gvand'],
+        username: '',
+        filter: '',
+        suggestions: [],
         repositories: false,
         loading: false,
         error: false,

@@ -1,18 +1,16 @@
 import { fork, call, put, select, takeLatest } from 'redux-saga/effects';
 import {
     GITHUB_REPOS_REQUEST,
-    GITHUB_USERNAME_CHANGE,
     githubReposLoaded,
     githubReposError,
-    githubReposRequest
-} from './actions';
+} from '../actions';
 
-import request from '../utils/request';
+import request from '../../utils/request';
 
-const getUsername = state => state.github.username;
+const getInput = state => state.github.username;
 
 export function* getRepos() {
-    const username = yield select(getUsername);
+    const username = yield select(getInput);
     const requestURL = `https://api.github.com/users/${username}/repos?type=all&sort=updated`;
     try {
         const repos = yield call(request, requestURL);
@@ -22,19 +20,10 @@ export function* getRepos() {
     }
 }
 
-export function* userChanged() {
-    yield put(githubReposRequest());
-}
-
-export function* watchUsername() {
-    yield takeLatest(GITHUB_USERNAME_CHANGE, userChanged);
-}
-
-export function* watchRequest() {
+export function* watchRepoRequest() {
     yield takeLatest(GITHUB_REPOS_REQUEST, getRepos);
 }
 
-export const sagas = [
-    fork(watchRequest),
-    fork(watchUsername)
+export default [
+    fork(watchRepoRequest)
 ];
