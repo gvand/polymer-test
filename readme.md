@@ -35,4 +35,4 @@ The following steps are written with a MAC in mind so if this doesn't work on yo
 - Clone the repository: `$> git clone https://github.com/gvand/polymer-test.git`
 - Change to the project root directory: `$> cd polymer-test`
 - Run the project with docker: `$> docker-compose up`
-- open [http://docker.localhost/](http://docker.localhost/)
+- open [http://webpack.docker.localhost/](http://webpack.docker.localhost/)
