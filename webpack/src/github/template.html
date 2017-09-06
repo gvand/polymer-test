@@ -6,12 +6,26 @@
     <postcss src="./../style.pcss"></postcss>
     <postcss src="./style.pcss"></postcss>
     <template>
+        <h1>[[filter]]</h1>
         <vaadin-combo-box id="username-list"
                           filtered-items="[[suggestions]]"
                           on-input="onFilter"
                           on-change="onChange"
                           filter="[[filter]]"
-                          value="[[username]]">
+                          value="[[username]]"
+                          placeholder="github username"
+                          allowCustomValue="true"
+                          preventInvalidInput="false"
+                          item-value-path="login"
+                          item-label-path="login">
+            <template>
+                <paper-icon-item>
+                    <!--<img src="[[item.avatar_url]]" item-icon>-->
+                    <paper-item-body two-line>
+                        <div>[[item.login]]</div>
+                    </paper-item-body>
+                </paper-icon-item>
+            </template>
         </vaadin-combo-box>
         <vaadin-grid items="[[repositories]]">
             <vaadin-grid-column width="50px" flex-grow="0">
