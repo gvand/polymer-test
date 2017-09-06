@@ -37,6 +37,7 @@
     "css-loader": "^0.28.5",
     "html-inline-source-webpack-plugin": "^1.1.0",
     "html-webpack-inline-source-plugin": "^0.0.9",
+    "jest": "^20.0.4",
     "polymer": "^0.5.0",
     "polymer-redux": "^1.0.2",
     "postcss-apply": "^0.8.0",
