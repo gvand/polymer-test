@@ -49,11 +49,13 @@ class IngGithub extends ReduxMixin(Polymer.Element) {
     }
 
     onChange() {
-        this.dispatch('githubUsernameChange', this.$['username-list'].value);
+        const { value, filter } = this.$['username-list'];
+        this.dispatch('githubUsernameChange', value, filter);
     }
 
     onFilter() {
-        this.dispatch('githubUsernameInput', this.$['username-list'].filter);
+        const { value, filter } = this.$['username-list'];
+        this.dispatch('githubUsernameInput', value, filter);
     }
 }
 
