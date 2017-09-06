@@ -1,10 +1,9 @@
 import { fork, call, put, select, takeLatest } from 'redux-saga/effects';
 import {
-    GITHUB_REPOS_REQUEST,
     githubReposLoaded,
     githubReposError,
 } from '../actions';
-
+import { GITHUB_REPOS_REQUEST } from '../constants';
 import request from '../../utils/request';
 
 const getInput = state => state.github.username;

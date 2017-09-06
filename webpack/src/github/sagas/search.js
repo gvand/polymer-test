@@ -1,10 +1,12 @@
 import { fork, put, takeLatest } from 'redux-saga/effects';
 import {
-    GITHUB_USERNAME_CHANGE,
-    GITHUB_USERNAME_INPUT,
     githubReposRequest,
     githubUsersRequest
 } from '../actions';
+import {
+    GITHUB_USERNAME_CHANGE,
+    GITHUB_USERNAME_INPUT
+} from '../constants';
 
 export function* changed() {
     yield put(githubReposRequest());

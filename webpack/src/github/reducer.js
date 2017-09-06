@@ -7,7 +7,7 @@ import {
     GITHUB_USERS_ERROR,
     GITHUB_USERS_LOADED,
     GITHUB_USERS_REQUEST
-} from './actions';
+} from './constants';
 
 export const reducer = (state = {}, action) => {
     switch (action.type) {
@@ -33,7 +33,8 @@ export const reducer = (state = {}, action) => {
         case GITHUB_USERNAME_CHANGE:
             return state = {
                 ...state,
-                username: action.name.replace(/@/gi, '')
+                username: action.username.replace(/@/gi, ''),
+                filter: action.filter
             };
         case GITHUB_USERS_REQUEST:
             return state = {
@@ -53,7 +54,8 @@ export const reducer = (state = {}, action) => {
         case GITHUB_USERNAME_INPUT:
             return state = {
                 ...state,
-                filter: action.name
+                username: action.username,
+                filter: action.filter
             };
         default:
             return state;
